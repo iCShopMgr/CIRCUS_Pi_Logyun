@@ -1,0 +1,14 @@
+{
+    "name": "logyun",
+    "version": "1.0",
+    "description": "Logyun with micro:bit",
+    "license": "MIT",
+    "dependencies": {
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+        "_locales/zh/logyun-strings.json"
+    ],
+    "public": true
+}
