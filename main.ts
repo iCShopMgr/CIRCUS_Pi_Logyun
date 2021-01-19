@@ -174,7 +174,7 @@ namespace logyun {
         }
         else {
             clear_ = serial.readString();
-            serial.writeLine("WifiConnect(YisrealWifi,0958002618)");
+            serial.writeLine("WifiConnect("+ssid+","+key+")");
             state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
         }
 
