@@ -55,7 +55,9 @@
     "logyun.connect_logyun|block": "連雲連接|RX %choose1|TX %choose2|Wi-Fi 名稱: %ssid|密碼: %key",
     "logyun.connecting_logyun|block": "連雲是否連接Wi-Fi ?",
     "logyun.logyun_thingspeak|block": "上傳 ThingSpeak API Keys %apikey|Field1 %f1||Field2 %f2 Field3 %f3 Field4 %f4 Field5 %f5 Field6 %f6 Field7 %f7 Field8 %f8",
+    "logyun.logyun_thingspeak_read|block": "讀取 ThingSpeak |Channel ID %chid |Read API Keys %apikey |選擇 %field_num",
     "logyun.logyun_googlesheet|block": "上傳 Google試算表 連結金鑰 %apikey|Field1 %f1||Field2 %f2 Field3 %f3 Field4 %f4 Field5 %f5 Field6 %f6 Field7 %f7 Field8 %f8 Field9 %f9 Field10 %f10",
+    "logyun.logyun_googlesheet_read|block": "讀取 Google試算表 連結金鑰 %apikey 儲存格 %cells",
     "logyun.open_weather|block": "查詢天氣資訊連接 API Keys %apikey 選擇 %city_number",
     "logyun.open_weather_data|block": "取得天氣查詢後 %choose 資料",
     "logyun.air_box|block": "連接網路空氣盒子 Divice ID %apikey",
@@ -68,5 +70,6 @@
     "logyun.mqtt_received_topic|block": "取得來源Topic名稱",
     "logyun.mqtt_received_msg|block": "取得訊息",
     "logyun.mqtt_connectd_check|block": "確認是否連接 MQTT ?",
+    "logyun.mqtt_publish|block": "MQTT 發佈訊息|Topic名稱: %topic 訊息: %message",
     "logyun.mqtt_break|block": "關閉 MQTT"
 }
