@@ -41,9 +41,11 @@ function check_name(state: string) :number{
 }
 
 //% weight=0 color=#0000ff icon="\uf0c2" block="logyun"
-//% groups=['MQTT']
-//% groups=['Data Send']
+//% groups=['ThingSpeak']
+//% groups=['Google Sheet']
+//% groups=['Environment']
 //% groups=['Data Read']
+//% groups=['MQTT']
 namespace logyun {
     export enum city_number {
         //% block="Keelung City"
@@ -87,6 +89,25 @@ namespace logyun {
         //% block="Mazu Nangan"
         _data20 = "7552914"
 
+    }
+
+    export enum field_num {
+        //% block="Field1"
+        _data1 = 1,
+        //% block="Field2"
+        _data2 = 2,
+        //% block="Field3"
+        _data3 = 3,
+        //% block="Field4"
+        _data4 = 4,
+        //% block="Field5"
+        _data5 = 5,
+        //% block="Field6"
+        _data6 = 6,
+        //% block="Field7"
+        _data7 = 7,
+        //% block="Field8"
+        _data8 = 8,
     }
 
     export enum open_weather_choose {
@@ -197,10 +218,10 @@ namespace logyun {
     //% expandableArgumentMode"toggle" inlineInputMode=inline
     //% blockId=logyun_thingspeak block="Upload ThingSpeak API Keys %apikey|Field1 %f1||Field2 %f2 Field3 %f3 Field4 %f4 Field5 %f5 Field6 %f6 Field7 %f7 Field8 %f8"
     //% weight=10
-    //% group="Data Send"
+    //% group="ThingSpeak"
     export function logyun_thingspeak(apikey: string, f1: number, f2?: number, f3?: number, f4?: number, f5?: number, f6?: number, f7?: number, f8?: number): void {
         let datalist = [f1,f2,f3,f4,f5,f6,f7,f8];
-        let sendText = "ThingSpeak("+apikey;
+        let sendText = "ThingSpeakWrite("+apikey;
         for (let i=0; i<datalist.length; i++) {
             if (datalist[i] != null) {
                 sendText += "," + datalist[i];
@@ -214,13 +235,24 @@ namespace logyun {
         serial.writeLine(sendText);
     }
 
+    //% blockId="logyun_thingspeak_read" block="Read ThingSpeak Channel ID %chid Read API Keys %apikey choose %field_num"
+    //% weight=10
+    //% group="ThingSpeak"
+    export function logyun_thingspeak_read(chid: string, apikey: string, field_num: field_num): string {
+        let sendText = "ThingSpeakRead("+chid+","+apikey+","+field_num+")";
+        clear_ = serial.readString();
+        serial.writeLine(sendText);
+        state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
+        return state;
+    }
+
     //% expandableArgumentMode"toggle" inlineInputMode=inline
     //% blockId=logyun_googlesheet block="Upload Google Sheet Spreadsheet Key %apikey|Field1 %f1||Field2 %f2 Field3 %f3 Field4 %f4 Field5 %f5 Field6 %f6 Field7 %f7 Field8 %f8 Field9 %f9 Field10 %f10"
     //% weight=10
-    //% group="Data Send"
+    //% group="Google Sheet"
     export function logyun_googlesheet(apikey: string, f1: string, f2?: string, f3?: string, f4?: string, f5?: string, f6?: string, f7?: string, f8?: string, f9?: string, f10?: string): void {
         let datalist = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10];
-        let sendText = "GoogleSheet("+apikey;
+        let sendText = "GoogleSheetWrite("+apikey;
         for (let i=0; i<datalist.length; i++) {
             if (datalist[i] != null) {
                 sendText += "," + datalist[i];
@@ -234,9 +266,20 @@ namespace logyun {
         serial.writeLine(sendText);
     }
 
+    //% blockId="logyun_googlesheet_read" block="Read Google Sheet Spreadsheet Key %apikey Cells %cells"
+    //% weight=10
+    //% group="Google Sheet"
+    export function logyun_googlesheet_read(apikey: string, cells: string): string {
+        let sendText = "GoogleSheetRead("+apikey+","+cells+")";
+        clear_ = serial.readString();
+        serial.writeLine(sendText);
+        state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
+        return state;
+    }
+
     //% blockId="open_weather" block="Connect OpenWeather API Keys %apikey choose %city_number"
     //% weight=10
-    //% group="Data Read"
+    //% group="Environment"
     export function open_weather(apikey: string, city_number: city_number): void {
         let list = ["0", "0", "0", "0", "0", "0"];
         let sendText = "OpenWeather("+city_number+","+apikey+")";
@@ -252,14 +295,14 @@ namespace logyun {
 
     //% blockId="open_weather_data" block="Get OpenWeather %choose data"
     //% weight=10
-    //% group="Data Read"
+    //% group="Environment"
     export function open_weather_data(choose: open_weather_choose): number {
         return parseFloat(weatherList[choose]);
     }
 
     //% blockId="air_box" block="Connect AirBox Divice ID %apikey"
     //% weight=10
-    //% group="Data Read"
+    //% group="Environment"
     export function air_box(apikey: string): void {
         let list = ["0", "0", "0", "0", "0", "0", "0", "0"]
         let sendText = "AirBox("+apikey+")";
@@ -275,7 +318,7 @@ namespace logyun {
 
     //% blockId="air_box_data" block="Get AirBox %choose data"
     //% weight=10
-    //% group="Data Read"
+    //% group="Environment"
     export function air_box_data(choose: air_box_choose): number {
         if (choose < 3) {
             return parseFloat(airboxList[choose]);
@@ -287,7 +330,7 @@ namespace logyun {
 
     //% blockId="tw_aqi" block="Connect Taiwan AQI region %region"
     //% weight=10
-    //% group="Data Read"
+    //% group="Environment"
     export function tw_aqi(region: string): void {
         let list = ["0", "0", "0", "0", "0", "0", "0", "0", "0"];
         let target = check_name(region);
@@ -305,7 +348,7 @@ namespace logyun {
 
     //% blockId="tw_aqi_data" block="Get Taiwan AQI %choose data"
     //% weight=10
-    //% group="Data Read"
+    //% group="Environment"
     export function tw_aqi_data(choose: tw_aqi_choose): number {
         if (choose > 0 && choose < 5) {
             return parseFloat(twaqiList[choose]);
@@ -392,6 +435,15 @@ namespace logyun {
         else {
             return false;
         }
+    }
+
+    //% blockId="mqtt_publish" block="MQTT Publish |Topic: %topic Message: %message"
+    //% weight=10
+    //% group="MQTT"
+    export function mqtt_publish(topic: string, message: string): void {
+        let sendText = "MQTTPublish("+topic+","+message+")";
+        clear_ = serial.readString();
+        serial.writeLine(sendText);
     }
 
     //% blockId="mqtt_break" block="MQTT Break"
