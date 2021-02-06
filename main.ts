@@ -215,6 +215,15 @@ namespace logyun {
         }
     }
 
+    //% blockId=ip_logyun block="logyun Wifi local IP ?"
+    //% weight=10
+    export function ip_logyun(): string {
+        clear_ = serial.readString();
+        serial.writeLine("WifiLocalIP()");
+        state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
+        return state;
+    }
+
     //% expandableArgumentMode"toggle" inlineInputMode=inline
     //% blockId=logyun_thingspeak block="Upload ThingSpeak API Keys %apikey|Field1 %f1||Field2 %f2 Field3 %f3 Field4 %f4 Field5 %f5 Field6 %f6 Field7 %f7 Field8 %f8"
     //% weight=10
@@ -449,11 +458,20 @@ namespace logyun {
     //% blockId="mqtt_break" block="MQTT Break"
     //% weight=10
     //% group="MQTT"
-    export function mqtt_break(): string {
+    export function mqtt_break(): void {
         let sendText = "MQTTBreak()";
         clear_ = serial.readString();
         serial.writeLine(sendText);
         state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
-        return state;
+    }
+
+    //% blockId="mqtt_reconnect" block="MQTT Reconnect"
+    //% weight=10
+    //% group="MQTT"
+    export function mqtt_reconnect(): void {
+        let sendText = "MQTTReconnect()";
+        clear_ = serial.readString();
+        serial.writeLine(sendText);
+        state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
     }
 }
