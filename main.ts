@@ -401,6 +401,8 @@ namespace logyun {
     //% blockId="mqtt_connect" block="MQTT Connect|Server: %server_ip|Port: %server_port|User ID: %user_id|User Name: %user_name|User password: %user_password|Subscribe Topic: %topic"
     //% weight=10
     //% group="MQTT"
+    //% server_ip.defl="broker.hivemq.com"
+    //% server_port.defl="1883"
     export function mqtt_connect(server_ip: string, server_port: string, user_id: string, user_name: string, user_password: string, topic: string): void {
         let sendText = "MQTTConnect("+""+server_ip+","+""+server_port+","+""+user_id+","+""+user_name+","+""+user_password+","+""+topic+")";
         clear_ = serial.readString();
