@@ -309,7 +309,7 @@ namespace logyun {
         return parseFloat(weatherList[choose]);
     }
 
-    //% blockId="air_box" block="Connect AirBox Divice ID %apikey"
+    //% blockId="air_box" block="Connect AirBox Device ID %apikey"
     //% weight=10
     //% group="Environment"
     export function air_box(apikey: string): void {
