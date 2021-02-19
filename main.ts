@@ -386,7 +386,7 @@ namespace logyun {
     //% blockId="tw_stock_data" block="Get Taiwan Stock %choose data"
     //% weight=10
     //% group="Data Read"
-    export function tw_stock_data(choose: tw_stock_choose): string{
+    export function tw_stock_data(choose: tw_stock_choose) {
         if ((choose > 0 && choose < 5) || choose == 7) {
             return parseFloat(twstockList[choose]);
         }
