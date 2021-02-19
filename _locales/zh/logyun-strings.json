@@ -61,7 +61,7 @@
     "logyun.logyun_googlesheet_read|block": "讀取 Google試算表 連結金鑰 %apikey 儲存格 %cells",
     "logyun.open_weather|block": "查詢天氣資訊連接 API Keys %apikey 選擇 %city_number",
     "logyun.open_weather_data|block": "取得天氣查詢後 %choose 資料",
-    "logyun.air_box|block": "連接網路空氣盒子 Divice ID %apikey",
+    "logyun.air_box|block": "連接網路空氣盒子 裝置ID %apikey",
     "logyun.air_box_data|block": "取得空氣盒子 %choose 資料",
     "logyun.tw_aqi|block": "連接台灣空氣資訊監測站 %region",
     "logyun.tw_aqi_data|block": "取得監測站 %choose 資料",
