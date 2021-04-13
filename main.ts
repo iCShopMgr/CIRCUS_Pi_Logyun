@@ -46,6 +46,7 @@ function check_name(state: string) :number{
 //% groups=['Environment']
 //% groups=['Data Read']
 //% groups=['MQTT']
+//% groups=['Community'] 
 namespace logyun {
     export enum city_number {
         //% block="Keelung City"
@@ -398,6 +399,24 @@ namespace logyun {
         }
     }
 
+    //% blockId="line_notify" block="Line Notify |Token: %token Message: %message"
+    //% weight=10
+    //% group="Community"
+    export function line_notify(token: string, message: string): void {
+        let sendText = "LineNotify("+token+","+message+")";
+        clear_ = serial.readString();
+        serial.writeLine(sendText);
+    }
+
+    //% blockId="ifttt" block="IFTTT |Key: %key|event name: %event|Value1: %value1|Value2: %value2|Value3: %value3"
+    //% weight=10
+    //% group="Community"
+    export function ifttt(key: string, event: string, value1: string, value2: string, value3: string): void {
+        let sendText = "IFTTT("+key+","+event+","+value1+","+value2+","+value3+")";
+        clear_ = serial.readString();
+        serial.writeLine(sendText);
+    }
+
     //% blockId="mqtt_connect" block="MQTT Connect|Server: %server_ip|Port: %server_port|User ID: %user_id|User Name: %user_name|User password: %user_password|Subscribe Topic: %topic"
     //% weight=10
     //% group="MQTT"
@@ -408,6 +427,15 @@ namespace logyun {
         clear_ = serial.readString();
         serial.writeLine(sendText);
         state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
+    }
+
+    //% blockId="mqtt_subscribe" block="MQTT Subscribe |Topic: %topic"
+    //% weight=10
+    //% group="MQTT"
+    export function mqtt_subscribe(topic: string): void {
+        let sendText = "MQTTSubscribe("+topic+")";
+        clear_ = serial.readString();
+        serial.writeLine(sendText);
     }
 
     //% blockId="mqtt_received_topic" block="MQTT Received Topic"
@@ -475,5 +503,5 @@ namespace logyun {
         clear_ = serial.readString();
         serial.writeLine(sendText);
         state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
-    }
+    } 
 }
