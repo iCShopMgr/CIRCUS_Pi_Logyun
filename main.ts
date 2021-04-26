@@ -198,6 +198,9 @@ namespace logyun {
             clear_ = serial.readString();
             serial.writeLine("WifiConnect("+ssid+","+key+")");
             state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
+            clear_ = serial.readString();
+            serial.writeLine("WifiConnect("+ssid+","+key+")");
+            state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
         }
 
     }
