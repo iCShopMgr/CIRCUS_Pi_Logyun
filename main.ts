@@ -31,7 +31,7 @@ let list_str = ["基隆", "汐止", "萬里", "新店", "土城", "板橋", "新
 
 function check_name(state: string) :number{
     let count = -1;
-    for (let i=0; i<list_str.length(); i++) {
+    for (let i=0; i<list_str.length; i++) {
         if (state.includes(list_str[i])) {
             count = i;
             break;
