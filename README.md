@@ -1,3 +1,6 @@
+# Logyun with micro:bit V1.2
+* 修正Wi-Fi連線為直到連線成功
+
 # Logyun with micro:bit V1.1
 * ThingSpeak 上傳與讀取
 * Google Sheet 上傳與讀取
