@@ -52,7 +52,7 @@
     "logyun.tw_stock_choose._data8|block": "成交價",
     "logyun.tw_stock_choose._data9|block": "日期",
     "logyun.tw_stock_choose._data10|block": "時間",
-    "logyun.connect_logyun|block": "連雲連接|RX %choose1|TX %choose2|Wi-Fi 名稱: %ssid|密碼: %key",
+    "logyun.connect_logyun|block": "連雲連接|RX %choose1|TX %choose2|Wi-Fi 名稱: %ssid|密碼: %key|直到成功",
     "logyun.connecting_logyun|block": "連雲是否連接Wi-Fi ?",
     "logyun.ip_logyun|block": "連雲取得Wi-Fi連接IP地址",
     "logyun.logyun_thingspeak|block": "上傳 ThingSpeak API Keys %apikey|Field1 %f1||Field2 %f2 Field3 %f3 Field4 %f4 Field5 %f5 Field6 %f6 Field7 %f7 Field8 %f8",
