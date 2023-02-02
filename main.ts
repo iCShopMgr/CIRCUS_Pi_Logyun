@@ -209,9 +209,13 @@ namespace logyun {
             serial_list[choose2],
             BaudRate.BaudRate115200
         )
-        basic.pause(1000)
+        basic.pause(1000);
         serial.writeLine("a");
-        let readWifiState = serial.readLine()
+        clear_ = serial.readString();
+        serial.writeLine("WifiConnect(" + ssid + "," + key + ")");
+        basic.pause(1000);
+        /*
+        let readWifiState = serial.readLine();
         while (true) {
             clear_ = serial.readString();
             serial.writeLine("WifiConnect(" + ssid + "," + key + ")");
@@ -220,6 +224,7 @@ namespace logyun {
                 break;
             }
         }
+        */
 
     }
 
