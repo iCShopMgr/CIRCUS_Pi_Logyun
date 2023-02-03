@@ -1,6 +1,6 @@
 {
     "name": "logyun",
-    "version": "1.0",
+    "version": "1.",
     "description": "Logyun with micro:bit",
     "license": "MIT",
     "dependencies": {
