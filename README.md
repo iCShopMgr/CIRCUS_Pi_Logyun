@@ -1,6 +1,6 @@
 # Logyun with micro:bit V1.2
 * 新增連雲韌體版本v1.2(修改傳輸速率為9600)
-* 新增連雲v1.1與v1.2兩種連線積木
+* 新增連雲v1.2連線積木
 * 修正TaiwanAQI無法讀取的問題
 
 # Logyun with micro:bit V1.1
