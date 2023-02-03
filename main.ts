@@ -186,36 +186,16 @@ namespace logyun {
         //% block="time"
         _data10 = 9
     }
-    //% blockId=connect_logyun block="Logyun connect WiFi|RX %choose1|TX %choose2|Wi-Fi SSID: %ssid|Password: %key"
+    //% blockId=connect_logyun1 block="Logyun v1.1 connect WiFi|RX %choose1|TX %choose2|Wi-Fi SSID: %ssid|Password: %key"
     //% weight=10
-    export function connect_logyun(choose1: soft_serial, choose2: soft_serial, ssid: string, key: string): void {
-        /*
-        serial.redirect(serial_list[choose1], serial_list[choose2], BaudRate.BaudRate115200);
-        basic.pause(1000);
-        if (connecting_logyun()) {
-            clear_ = serial.readString();
-        }
-        else {
-            clear_ = serial.readString();
-            serial.writeLine("WifiConnect(" + ssid + "," + key + ")");
-            state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
-            clear_ = serial.readString();
-            serial.writeLine("WifiConnect(" + ssid + "," + key + ")");
-            state = serial.readUntil(serial.delimiters(Delimiters.NewLine));
-        }
-        */
+    export function connect_logyun1(choose1: soft_serial, choose2: soft_serial, ssid: string, key: string): void {
         serial.redirect(
             serial_list[choose1],
             serial_list[choose2],
-            BaudRate.BaudRate115200
+            115200
         )
-        basic.pause(1000);
-        serial.writeLine("a");
-        //clear_ = serial.readString();
-        //serial.writeLine("WifiConnect(" + ssid + "," + key + ")");
-        basic.pause(1000);
-        
-        let readWifiState = serial.readLine();
+
+        let readWifiState = "";
         while (true) {
             clear_ = serial.readString();
             serial.writeLine("WifiConnect(" + ssid + "," + key + ")");
@@ -223,9 +203,44 @@ namespace logyun {
             if (readWifiState == "ok") {
                 break;
             }
+            basic.pause(500);
+            clear_ = serial.readString();
+            serial.writeLine("WifiCheck()");
+            readWifiState = serial.readLine()
+            if (readWifiState == "ok") {
+                break;
+            }
+            basic.pause(500);
         }
-        
 
+    }
+    
+    //% blockId=connect_logyun2 block="Logyun v1.2 connect WiFi|RX %choose1|TX %choose2|Wi-Fi SSID: %ssid|Password: %key"
+    //% weight=10
+    export function connect_logyun2(choose1: soft_serial, choose2: soft_serial, ssid: string, key: string): void {
+        serial.redirect(
+            serial_list[choose1],
+            serial_list[choose2],
+            9600
+        )
+
+        let readWifiState = "";
+        while (true) {
+            clear_ = serial.readString();
+            serial.writeLine("WifiConnect(" + ssid + "," + key + ")");
+            readWifiState = serial.readLine()
+            if (readWifiState == "ok") {
+                break;
+            }
+            basic.pause(500);
+            clear_ = serial.readString();
+            serial.writeLine("WifiCheck()");
+            readWifiState = serial.readLine()
+            if (readWifiState == "ok") {
+                break;
+            }
+            basic.pause(500);
+        }
     }
 
     //% blockId=connecting_logyun block="logyun Wifi connecting ?"
