@@ -186,7 +186,7 @@ namespace logyun {
         //% block="time"
         _data10 = 9
     }
-    //% blockId=connect_logyun1 block="Logyun v1.1 connect WiFi|RX %choose1|TX %choose2|Wi-Fi SSID: %ssid|Password: %key"
+    //% blockId=connect_logyun1 block="Logyun v1.1 connect WiFi(115200)|RX %choose1|TX %choose2|Wi-Fi SSID: %ssid|Password: %key"
     //% weight=10
     export function connect_logyun1(choose1: soft_serial, choose2: soft_serial, ssid: string, key: string): void {
         serial.redirect(
@@ -215,7 +215,7 @@ namespace logyun {
 
     }
     
-    //% blockId=connect_logyun2 block="Logyun v1.2 connect WiFi|RX %choose1|TX %choose2|Wi-Fi SSID: %ssid|Password: %key"
+    //% blockId=connect_logyun2 block="Logyun v1.2 connect WiFi(9600)|RX %choose1|TX %choose2|Wi-Fi SSID: %ssid|Password: %key"
     //% weight=10
     export function connect_logyun2(choose1: soft_serial, choose2: soft_serial, ssid: string, key: string): void {
         serial.redirect(
