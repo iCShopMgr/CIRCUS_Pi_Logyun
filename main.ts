@@ -259,7 +259,7 @@ namespace logyun {
         else {
             serial.redirect(serial_list[choose1], serial_list[choose2], 115200);
         }
-        basic.pause(300);
+        basic.pause(1100);
     }
 
     //% blockId=connecting_logyun block="logyun Wifi connecting ?"
