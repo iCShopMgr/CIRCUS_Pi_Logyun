@@ -19,6 +19,7 @@ enum soft_serial {
 
 
 let serial_list = [SerialPin.P0, SerialPin.P1, SerialPin.P2, SerialPin.P8, SerialPin.P13, SerialPin.P14, SerialPin.P15, SerialPin.P16];
+let baud_rate = 1;
 let state = "";
 let clear_ = "";
 
@@ -189,6 +190,7 @@ namespace logyun {
     //% blockId=connect_logyun1 block="Logyun v1.1 connect WiFi(115200)|RX %choose1|TX %choose2|Wi-Fi SSID: %ssid|Password: %key"
     //% weight=10
     export function connect_logyun1(choose1: soft_serial, choose2: soft_serial, ssid: string, key: string): void {
+        baud_rate = 2;
         serial.redirect(
             serial_list[choose1],
             serial_list[choose2],
@@ -220,6 +222,7 @@ namespace logyun {
     //% blockId=connect_logyun2 block="Logyun v1.2 connect WiFi(9600)|RX %choose1|TX %choose2|Wi-Fi SSID: %ssid|Password: %key"
     //% weight=10
     export function connect_logyun2(choose1: soft_serial, choose2: soft_serial, ssid: string, key: string): void {
+        baud_rate = 1;
         serial.redirect(
             serial_list[choose1],
             serial_list[choose2],
@@ -245,6 +248,18 @@ namespace logyun {
             basic.pause(500);
             */
         }
+    }
+                                     
+    //% blockId=reconnect_logyun block="reconnect Logyun|RX %choose1|TX %choose2"
+    //% weight=10
+    export function reconnect_logyun(choose1: soft_serial, choose2: soft_serial): void {
+        if (baud_rate == 1) {                         
+            serial.redirect(serial_list[choose1], serial_list[choose2], 9600);
+        }
+        else {
+            serial.redirect(serial_list[choose1], serial_list[choose2], 115200);
+        }
+        basic.pause(300);
     }
 
     //% blockId=connecting_logyun block="logyun Wifi connecting ?"
