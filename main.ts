@@ -205,8 +205,8 @@ namespace logyun {
             if (readWifiState == "ok") {
                 break;
             }
-            basic.pause(100);
-            /*
+            basic.pause(500);
+            
             clear_ = serial.readString();
             serial.writeLine("WifiCheck()");
             readWifiState = serial.readLine()
@@ -214,7 +214,7 @@ namespace logyun {
                 break;
             }
             basic.pause(500);
-            */
+            
         }
 
     }
@@ -237,8 +237,8 @@ namespace logyun {
             if (readWifiState == "ok") {
                 break;
             }
-            basic.pause(100);
-            /*
+            basic.pause(500);
+            
             clear_ = serial.readString();
             serial.writeLine("WifiCheck()");
             readWifiState = serial.readLine()
@@ -246,7 +246,7 @@ namespace logyun {
                 break;
             }
             basic.pause(500);
-            */
+            
         }
     }
                                      
